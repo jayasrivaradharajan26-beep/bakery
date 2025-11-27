@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bakery Gallery - Custom Layout</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"> 
+    </head>
+<style>
+  /* General Reset and Base Styles */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    color: #333;
+    line-height: 1.6;
+    background-color: #fff;
+}
+
+a { text-decoration: none; color: inherit; }
+img { max-width: 100%; height: auto; display: block; }
+/* --- Top Header Styling (New Section) --- */
+.top-header {
+    background-color: #f8f8f8;
+    color: #666;
+    font-size: 12px;
+    padding: 5px 50px;
+    display: flex;
+    justify-content: space-between;
+}
+
+/* --- Main Header Styling (Logo, Search Bar, Icons) --- */
+.main-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 50px 10px; /* Adjusted padding */
+}
+
+/* 1. Logo */
+.main-header .logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: brown;
+    min-width: 100px; /* Ensure logo has space */
+}
+
+/* 2. Search Container (Middle) */
+.search-container {
+    display: flex;
+    flex-grow: 1; /* Allows search bar to take up available space */
+    max-width: 500px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    overflow: hidden;
+    margin: 0 40px;
+}
+
+.search-container input {
+    flex-grow: 1;
+    border: none;
+    padding: 8px 15px;
+    font-size: 14px;
+    outline: none;
+}
+
+.search-container button {
+    background-color: transparent;
+    border: none;
+    padding: 8px 15px;
+    cursor: pointer;
+    color: #555;
+    font-size: 14px;
+}
+
+.search-container button:hover {
+    color: brown;
+}
+
+/* 3. Icons (Right Side) */
+.header-icons {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    font-size: 18px;
+    min-width: 100px; /* Ensure icons don't wrap easily */
+}
+.header-icons a {
+    color: #555;
+    transition: color 0.2s;
+}
+.header-icons a:hover {
+    color: brown;
+}
+
+/* --- Main Navigation Bar (Below Header) --- */
+.main-nav {
+    text-align: center;
+    padding: 10px 50px;
+    border-bottom: 1px solid #eee;
+    margin-bottom: 20px;
+}
+
+.main-nav a {
+    margin: 0 15px;
+    font-size: 14px;
+    color: #555;
+    padding-bottom: 5px;
+}
+
+.main-nav a.active {
+    color: brown;
+    border-bottom: 2px solid brown;
+}
+/* Ensure the original .main-header nav is removed or renamed to avoid conflict. */
+/* --- Gallery Grid Layout (The Crucial Part for 4-3-4 Layout) --- */
+.gallery-grid {
+    display: grid;
+    /* 12 columns: 12 is divisible by 4 (for 4 items) and 3 (for 3 items) */
+    grid-template-columns: repeat(12, 1fr); 
+    
+    /* 💥 Change the spacing (gap) value here 💥 */
+    gap: 30px; /* Example: Increased the distance between images to 30px */
+    
+    margin-bottom: 50px;
+}
+
+/* ... the rest of the gallery-item and gallery-large-h styles remain the same ... */
+
+/* Default items (Row 1 & 3: 4 images total) */
+.gallery-item {
+    grid-column: span 3; 
+    /* ... other styles ... */
+}
+
+/* Specific item size for Row 2 (3 images total) */
+.gallery-large-h {
+    grid-column: span 4; 
+    /* ... other styles ... */
+}
+/* Styling for product cards (Row 3) */
+.product-card {
+    background-color: #f9f9f9;
+    padding-bottom: 15px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+.product-card h3 { font-size: 16px; font-weight: 700; margin: 10px 10px 5px; }
+.product-card p { font-size: 14px; color: #666; margin: 0 10px; }
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 992px) {
+    .gallery-grid {
+        /* On tablets, switch back to 2 columns (or 6 columns for better control) */
+        grid-template-columns: repeat(6, 1fr); 
+    }
+    
+    /* 4 images in a row: 6 / 4 = 1.5. Let's make it 2 and 3 alternating */
+    .gallery-item {
+        grid-column: span 3; /* 2 items per row */
+    }
+    
+    /* 3 images in a row: 6 / 3 = 2 columns per item */
+    .gallery-large-h {
+        grid-column: span 2; 
+    }
+}
+
+@media (max-width: 600px) {
+    .main-header { flex-direction: column; padding: 10px 20px; }
+    .main-header nav a { margin: 5px 10px; display: inline-block; }
+    .gallery-page { padding: 10px 20px; }
+
+    .gallery-grid {
+        /* On mobile, use 1 column */
+        grid-template-columns: 1fr; 
+    }
+    /* All items are full width (span 1 column) on mobile */
+    .gallery-item, .gallery-large-h {
+        grid-column: span 1; 
+    }
+}
+/* --- Footer Styling --- */
+.main-footer {
+    display: flex;
+    /* Spacing between columns */
+    justify-content: space-between; 
+    padding: 40px 50px;
+    background-color: #f7f7f7;
+    border-top: 1px solid #eee;
+    /* Allows columns to wrap on smaller screens */
+    flex-wrap: wrap; 
+}
+
+.footer-col {
+    margin: 15px;
+    /* Ensure columns have a minimum width before wrapping */
+    min-width: 180px; 
+    padding-right: 15px; 
+}
+
+.footer-col h4 {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 15px;
+    color: #444;
+}
+
+/* Styling for the logo column */
+.footer-logo .logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: brown;
+    margin-bottom: 10px;
+}
+
+/* Styling for list items (links) */
+.footer-col ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-col ul li a {
+    font-size: 14px;
+    color: #777;
+    display: block;
+    margin-bottom: 8px;
+    transition: color 0.2s;
+}
+
+.footer-col ul li a:hover {
+    color: brown;
+}
+
+/* Styling for contact details */
+.contact-info p {
+    font-size: 14px;
+    color: #777;
+    margin-bottom: 5px;
+}
+
+/* Social Media Icons */
+.social-icons {
+    margin-top: 15px;
+}
+
+.social-icons a {
+    font-size: 18px;
+    color: #444;
+    margin-right: 15px;
+    transition: color 0.2s;
+}
+
+.social-icons a:hover {
+    color: brown;
+}
+
+/* --- Responsive Adjustments for Footer --- */
+@media (max-width: 992px) {
+    .main-footer {
+        /* When screen shrinks, reduce padding */
+        padding: 30px 20px;
+    }
+    .footer-col {
+        min-width: 45%; /* Make columns take up half the width on tablets */
+    }
+    .footer-logo {
+        min-width: 100%; /* Logo takes full width on tablets */
+        margin-bottom: 20px;
+    }
+}
+
+@media (max-width: 600px) {
+    .footer-col {
+        min-width: 100%; /* All columns stack on mobile */
+        margin: 10px 0;
+    }
+}
+</style>
+<body>
+      <div class="top-header">
+        <div>Free Deliver Above 999</div>
+        <div>Get 25% Off for First Order</div>
+        <div>Call: 123-456-789</div>
+    </div>
+
+    <header class="main-header">
+        
+        <div class="logo">Bakery</div>
+        
+        <div class="search-container">
+            <input type="text" placeholder="Search product">
+            <button><i class="fas fa-search"></i></button>
+        </div>
+        
+        <div class="header-icons">
+            <a href="#"><i class="fas fa-user-circle"></i></a>
+             <a href="#"><i class="fas fa-heart"></i></a>      
+              <a href="#"><i class="fas fa-bell"></i></a>        
+               <a href="#"><i class="fas fa-shopping-cart"></i></a>
+             </div>
+    </header>
+ <main class="main-nav">
+        <div class="logo">Bakery</div>
+        <nav>
+            <a href="#">Home</a>
+            <a href="#">Shop</a>
+            <a href="#">Categories</a>
+            <a href="#" class="active">Gallery</a>
+            <a href="#">Blog</a>
+            <a href="#">Contact us</a>
+        </nav>
+<main class="gallery-page">
+        
+        <section class="intro">
+            <h1>Our delicious creation</h1>
+            <p>From artisan breads to decadent pastries, each item is crafted with love and the finest ingredients</p>
+        </section>
+
+        <section class="gallery-grid">
+            
+            <div class="gallery-item">
+                <img src="images/bread and biscuits.png" alt="Artisan Breads">
+            </div>
+            <div class="gallery-item">
+                <img src="images/crossiont.png" alt="Croissant">
+            </div>
+            <div class="gallery-item">
+                <img src="images/chocolate cake.png" alt="Chocolate Stack">
+            </div>
+            <div class="gallery-item">
+                <img src="images/spandeuer.png" alt="Danish Pastries">
+            </div>
+
+            <div class="gallery-item gallery-large-h">
+                <img src="images/couple cake.png" alt="Couple Celebration">
+            </div>
+            <div class="gallery-item gallery-large-h">
+                <img src="images/couple.png" alt="Birthday Surprise">
+            </div>
+            <div class="gallery-item gallery-large-h">
+                <img src="images/birthday party.png" alt="Red Roses">
+            </div>
+
+            <div class="gallery-item product-card">
+                <img src="images/chocolate cake.png" alt="Decadent Chocolate Cake">
+                <h3>Decadent Chocolate Cake</h3>
+                <p>Chocolate layers with smooth ganache frosting.</p>
+            </div>
+            <div class="gallery-item product-card">
+                <img src="images/spandeuer.png" alt="Buttery Croissants">
+                <h3>Buttery Croissants</h3>
+                <p>Flaky, buttery pastries baked fresh every morning.</p>
+            </div>
+            <div class="gallery-item product-card">
+                <img src="images/crossiont.png" alt="Artisan Sourdough">
+                <h3>Artisan Sourdough</h3>
+                <p>Traditional sourdough with a perfect crust and tangy taste.</p>
+            </div>
+            <div class="gallery-item product-card">
+                <img src="images/bread and biscuits.png" alt="Artisan Bagels">
+                <h3>Artisan Bagels</h3>
+                <p>Hand rolled bagels with various toppings and flavors.</p>
+            </div>
+
+        </section>
+    </main>
+
+    <footer class="main-footer">
+    <div class="footer-col footer-logo">
+        <div class="logo">Bakery</div>
+        </div>
+    
+    <div class="footer-col">
+        <h4>Customer service</h4>
+        <ul>
+            <li><a href="#">My Account</a></li>
+            <li><a href="#">Checkup</a></li>
+            <li><a href="#">FAQ</a></li>
+            <li><a href="#">Return</a></li>
+        </ul>
+    </div>
+    
+    <div class="footer-col">
+        <h4>Company</h4>
+        <ul>
+            <li><a href="#">About us</a></li>
+            <li><a href="#">Blogs</a></li>
+            <li><a href="#">Contact us</a></li>
+            <li><a href="#">Career</a></li>
+        </ul>
+    </div>
+    
+    <div class="footer-col">
+        <h4>Our information</h4>
+        <ul>
+            <li><a href="#">Privacy</a></li>
+            <li><a href="#">Terms & Condition</a></li>
+            <li><a href="#">Customer Feedback</a></li>
+        </ul>
+    </div>
+    
+    <div class="footer-col contact-info">
+        <h4>Contact us</h4>
+        <p>Mobile: 123-456-789</p>
+        <p>Email: Bakery@gmail.com</p>
+        <p>Address: 12, north city-001</p>
+        
+        <div class="social-icons">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+        </div>
+    </div>
+</footer>
+</body>
+</html>

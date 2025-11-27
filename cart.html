@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cart - Bakery</title>
+
+<style>
+/* ---------- Global Styles ---------- */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #fef6f4;
+}
+
+/* ---------- Top Strip ---------- */
+.top-strip {
+    display: flex;
+    justify-content: space-between;
+    background: #fff3e6;
+    padding: 6px 20px;
+    font-size: 14px;
+}
+
+/* ---------- Header ---------- */
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 25px;
+    background: white;
+    border-bottom: 1px solid #ddd;
+}
+
+.logo {
+    font-size: 28px;
+    font-weight: bold;
+    color: #d28b7b;
+}
+
+.search-box input {
+    width: 220px;
+    padding: 8px 12px;
+    border-radius: 20px;
+    border: 1px solid #aaa;
+}
+
+.icons i {
+    margin-left: 12px;
+    font-size: 20px;
+}
+
+/* ---------- Navbar ---------- */
+nav {
+    display: flex;
+    justify-content: center;
+    background: white;
+    padding: 10px;
+}
+
+nav a {
+    margin: 0 15px;
+    text-decoration: none;
+    color: black;
+}
+
+/* ---------- Table Section ---------- */
+.table-header {
+    background: #d5b487;
+    padding: 12px 25px;
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr 1fr;
+    font-weight: bold;
+}
+
+.cart-item {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr 1fr;
+    padding: 15px 25px;
+    background: white;
+    border-bottom: 1px solid #ddd;
+}
+
+.cart-item img {
+    width: 95px;
+    border-radius: 8px;
+}
+
+/* Quantity Buttons */
+.qty-box {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.qty-box button {
+    padding: 6px 10px;
+    border: 1px solid black;
+    background: white;
+    border-radius: 5px;
+}
+
+/* ---------- Order Summary ---------- */
+.summary {
+    width: 270px;
+    margin: 25px;
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
+    border: 1px solid black;
+}
+
+.summary h3 {
+    margin-top: 0;
+}
+
+.summary-row {
+    display: flex;
+    justify-content: space-between;
+    margin: 6px 0;
+}
+
+.checkout-btn {
+    width: 100%;
+    padding: 12px;
+    background: black;
+    color: white;
+    border-radius: 8px;
+    margin-top: 15px;
+}
+
+/* ---------- Coupon Section ---------- */
+.coupon-section {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding-left: 25px;
+}
+
+.coupon-section input {
+    padding: 8px;
+    border-radius: 20px;
+    border: 1px solid #aaa;
+}
+
+.apply-btn {
+    padding: 10px 18px;
+    border-radius: 20px;
+    background: #d5b487;
+    border: none;
+}
+
+.clear-cart {
+    margin-left: 30px;
+    color: red;
+    cursor: pointer;
+}
+
+/* ---------- Footer ---------- */
+footer {
+    background: #fff3e6;
+    padding: 30px;
+    display: flex;
+    justify-content: space-around;
+}
+
+footer div h4 {
+    margin-bottom: 10px;
+}
+
+footer div p {
+    margin: 4px 0;
+}
+</style>
+
+</head>
+<body>
+
+<!-- Top Strip -->
+<div class="top-strip">
+    <span>Free Deliver Above 999</span>
+    <span>Get 25%Off for first order</span>
+    <span style="color: green;">Call-123-456-789</span>
+</div>
+
+<!-- Header -->
+<header>
+    <div class="logo">Bakery</div>
+
+    <div class="search-box">
+        <input type="text" placeholder="Search product">
+    </div>
+
+    <div class="icons">
+        ❤️ 🛒 👤
+    </div>
+</header>
+
+<!-- Navbar -->
+<nav>
+    <a href="#">Home</a>
+    <a href="#">Shop</a>
+    <a href="#">Categories</a>
+    <a href="#">Gallery</a>
+    <a href="#">Blog</a>
+    <a href="#">Contact us</a>
+</nav>
+
+<!-- Cart Table -->
+<div class="table-header">
+    <div>Product</div>
+    <div>Names</div>
+    <div>Quantity</div>
+    <div>Price</div>
+</div>
+
+<div class="cart-item">
+    <img src="images/birthday party.png" alt="cake">
+    
+    <div>Birthday Browny Mac</div>
+
+    <div class="qty-box">
+        <button onclick="dec()">-</button>
+        <span id="qty">1</span>
+        <button onclick="inc()">+</button>
+    </div>
+
+    <div id="price">₹850</div>
+</div>
+
+<!-- Order Summary + Coupon -->
+<div style="display:flex; align-items:flex-start;">
+
+    <!-- Order Summary -->
+    <div class="summary">
+        <h3>Order Summary</h3>
+
+        <div class="summary-row"><span>Items</span><span>1</span></div>
+        <div class="summary-row"><span>Subtotal</span><span>Rs.1000</span></div>
+        <div class="summary-row"><span>Shipping</span><span>Rs.00.0</span></div>
+        <div class="summary-row"><span>Taxes</span><span>Rs.00.0</span></div>
+        <div class="summary-row"><span>Coupon Discount</span><span>- Rs.150</span></div>
+
+        <hr>
+
+        <div class="summary-row"><b>Total</b><b style="color:green;">₹850</b></div>
+
+        <button class="checkout-btn">Proceed to checkout</button>
+    </div>
+
+    <!-- Coupon -->
+    <div class="coupon-section">
+        <input type="text" placeholder="Couponcode">
+        <button class="apply-btn">Apply coupon</button>
+        <span class="clear-cart">Clear Shopping cart</span>
+    </div>
+
+</div>
+
+<!-- Footer -->
+<footer>
+    <div>
+        <h4>Customer service</h4>
+        <p>My Account</p>
+        <p>Checkup</p>
+        <p>FAQ</p>
+        <p>Return</p>
+    </div>
+
+    <div>
+        <h4>Company</h4>
+        <p>About us</p>
+        <p>Blogs</p>
+        <p>Contact us</p>
+        <p>Career</p>
+    </div>
+
+    <div>
+        <h4>Our information</h4>
+        <p>Privacy</p>
+        <p>Terms & Condition</p>
+        <p>Customer Feed back</p>
+    </div>
+
+    <div>
+        <h4>Mobile: 123-456-789</h4>
+        <p>Email_Bakery@gmail.com</p>
+        <p>Address : 12, north city-001</p>
+    </div>
+</footer>
+
+<script>
+/* Quantity Increase / Decrease */
+let qty = 1;
+
+function inc() {
+    qty++;
+    document.getElementById("qty").innerText = qty;
+}
+
+function dec() {
+    if (qty > 1) {
+        qty--;
+        document.getElementById("qty").innerText = qty;
+    }
+}
+</script>
+
+</body>
+</html>

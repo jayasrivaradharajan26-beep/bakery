@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Bakery</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"> 
+</head>
+<style>
+    /* --- Base Styles and Global Containers --- */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+body {
+    font-family: 'Roboto', sans-serif;
+    color: #333;
+    line-height: 1.6;
+    background-color: #fff;
+}
+a { text-decoration: none; color: inherit; }
+img { max-width: 100%; height: auto; display: block; }
+.logo { font-size: 24px; font-weight: bold; color: brown; }
+
+
+/* --- HEADER SECTION STYLES --- */
+.top-header {
+    background-color: #f8f8f8;
+    color: #666;
+    font-size: 12px;
+    padding: 5px 50px;
+    display: flex;
+    justify-content: space-between;
+}
+.main-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 50px 10px;
+}
+.search-container {
+    display: flex;
+    flex-grow: 1;
+    max-width: 500px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    overflow: hidden;
+    margin: 0 40px;
+}
+.search-container input {
+    flex-grow: 1;
+    border: none;
+    padding: 8px 15px;
+    font-size: 14px;
+    outline: none;
+}
+.search-container button {
+    background-color: transparent;
+    border: none;
+    padding: 8px 15px;
+    cursor: pointer;
+    color: #555;
+    font-size: 14px;
+}
+.header-icons {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    font-size: 18px;
+}
+.header-icons a {
+    color: #555;
+    transition: color 0.2s;
+}
+.header-icons a:hover {
+    color: brown;
+}
+.main-nav {
+    text-align: center;
+    padding: 10px 50px;
+    border-bottom: 1px solid #eee;
+    margin-bottom: 20px;
+}
+.main-nav a {
+    margin: 0 15px;
+    font-size: 14px;
+    color: #555;
+    padding-bottom: 5px;
+}
+.main-nav a.active {
+    color: brown;
+    border-bottom: 2px solid brown;
+}
+
+/* --- CONTACT PAGE STYLING (The New Layout) --- */
+
+.contact-page {
+    max-width: 1200px; 
+    margin: 0 auto;
+}
+
+/* 1. Support Image Section (Positioning for text overlay) */
+.support-image-section {
+    position: relative; 
+    margin: 20px 0;
+    overflow: hidden;
+    height: 350px; 
+}
+
+.support-background-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.5); /* Dims the image */
+}
+
+.support-overlay-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Centers the text */
+    color: white;
+    text-align: center;
+    width: 80%;
+}
+
+.support-overlay-content h2 {
+    font-size: 30px;
+    margin-bottom: 15px;
+    font-weight: 700;
+}
+.support-overlay-content p {
+    font-size: 16px;
+    opacity: 0.85;
+}
+
+/* 2. Contact Details Section (Flexbox for 3 columns) */
+.contact-details-section {
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 0 20px;
+    text-align: center;
+}
+
+.contact-intro p {
+    font-size: 16px;
+    color: #555;
+    margin-bottom: 40px;
+    line-height: 1.8;
+}
+
+.contact-info-blocks {
+    display: flex;
+    justify-content: space-around; 
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.info-block {
+    text-align: center;
+    padding: 20px;
+    flex: 1; 
+    min-width: 250px; 
+}
+
+.info-block i {
+    font-size: 24px;
+    color: brown;
+    margin-bottom: 10px;
+}
+
+.info-block h4 {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 5px;
+    color: #333;
+}
+.info-block p {
+    font-size: 14px;
+    color: #777;
+}
+
+
+/* --- FOOTER STYLING --- */
+.main-footer {
+    display: flex;
+    justify-content: space-between; 
+    padding: 40px 50px;
+    background-color: #f7f7f7;
+    border-top: 1px solid #eee;
+    flex-wrap: wrap; 
+}
+
+.footer-col {
+    margin: 15px;
+    min-width: 180px; 
+    padding-right: 15px; 
+}
+
+.footer-col h4 {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 15px;
+    color: #444;
+}
+
+.footer-col ul {
+    list-style: none;
+    padding: 0;
+}
+.footer-col ul li a {
+    font-size: 14px;
+    color: #777;
+    display: block;
+    margin-bottom: 8px;
+    transition: color 0.2s;
+}
+.contact-info p {
+    font-size: 14px;
+    color: #777;
+    margin-bottom: 5px;
+}
+.social-icons {
+    margin-top: 15px;
+}
+.social-icons a {
+    font-size: 18px;
+    color: #444;
+    margin-right: 15px;
+    transition: color 0.2s;
+}
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 768px) {
+    .support-image-section {
+        height: 250px;
+    }
+    .support-overlay-content h2 {
+        font-size: 24px;
+    }
+    .info-block {
+        min-width: 100%; 
+    }
+    .main-footer {
+        padding: 30px 20px;
+    }
+    .footer-col {
+        min-width: 45%; 
+    }
+}
+
+@media (max-width: 600px) {
+    .main-header {
+        flex-direction: column;
+    }
+    .search-container {
+        margin: 10px 0;
+    }
+    .footer-col {
+        min-width: 100%;
+    }
+}
+</style>
+<body>
+
+    <div class="top-header">
+        <div>Free Deliver Above 999</div>
+        <div>Get 25% Off for First Order</div>
+        <div>Call: 123-456-789</div>
+    </div>
+    <header class="main-header">
+        <div class="logo">Bakery</div>
+        <div class="search-container">
+            <input type="text" placeholder="Search product">
+            <button><i class="fas fa-search"></i></button>
+        </div>
+        <div class="header-icons">
+            <a href="#"><i class="fas fa-user-circle"></i></a>
+            <a href="#"><i class="fas fa-heart"></i></a>
+            <a href="#"><i class="fas fa-bell"></i></a>
+            <a href="#"><i class="fas fa-shopping-cart"></i></a>
+        </div>
+    </header>
+    <nav class="main-nav">
+        <a href="index.html">Home</a>
+        <a href="#">Shop</a>
+        <a href="#">Categories</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="#">Blog</a>
+        <a href="#" class="active">Contact us</a>
+    </nav>
+    
+    <main class="contact-page">
+        
+        <section class="support-image-section">
+            <img src="images/customer.png" alt="Customer support team" class="support-background-img">
+            <div class="support-overlay-content">
+                <h2>We're here to help your BAKERY ITEMS</h2>
+                <p>Have questions about our products, orders, or PACKAGE advice? Our team is happy to assist you.</p>
+            </div>
+        </section>
+        
+        <section class="contact-details-section">
+            
+            <div class="contact-intro">
+                <p>Our team is always ready to assist you. Whether you're looking for course recommendations, facing technical issues, or simply want to share your thoughts—we'd love to hear from you.</p>
+            </div>
+
+            <div class="contact-info-blocks">
+                
+                <div class="info-block">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <h4>Address:</h4>
+                    <p>123 Creative learn street, Raman City, TX 54321</p>
+                </div>
+                
+                <div class="info-block">
+                    <i class="fas fa-phone-alt"></i>
+                    <h4>Phone:</h4>
+                    <p>+1 234 567 890</p>
+                </div>
+                
+                <div class="info-block">
+                    <i class="fas fa-share-alt"></i>
+                    <h4>Follow Us</h4>
+                    <p>[Instagram, Facebook]</p>
+                </div>
+
+            </div>
+        </section>
+        
+    </main>
+
+    <footer class="main-footer">
+        <div class="footer-col footer-logo"><div class="logo">Bakery</div></div>
+        <div class="footer-col"><h4>Customer service</h4><ul><li><a href="#">My Account</a></li><li><a href="#">Checkup</a></li><li><a href="#">FAQ</a></li><li><a href="#">Return</a></li></ul></div>
+        <div class="footer-col"><h4>Company</h4><ul><li><a href="#">About us</a></li><li><a href="#">Blogs</a></li><li><a href="#">Contact us</a></li><li><a href="#">Career</a></li></ul></div>
+        <div class="footer-col"><h4>Our information</h4><ul><li><a href="#">Privacy</a></li><li><a href="#">Terms & Condition</a></li><li><a href="#">Customer Feedback</a></li></ul></div>
+        <div class="footer-col contact-info"><h4>Contact us</h4><p>Mobile: 123-456-789</p><p>Email: Bakery@gmail.com</p><p>Address: 12, north city-001</p><div class="social-icons"><a href="#"><i class="fab fa-facebook-f"></i></a><a href="#"><i class="fab fa-instagram"></i></a><a href="#"><i class="fab fa-twitter"></i></a></div></div>
+    </footer>
+
+</body>
+</html>

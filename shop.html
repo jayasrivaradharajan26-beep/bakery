@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bakery Shop Categories</title>   
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+ 
+<style>
+  /* Variables for easy theme changes */
+:root {
+    --primary-color: #e91e63; /* Pink/Red from Buy Now button */
+    --text-color: #333;
+    --light-bg: #f5f5f5;
+    --card-bg: #fff;
+    --border-color: #ccc;
+    --font-family: Arial, sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font-family);
+    color: var(--text-color);
+    background-color: var(--light-bg);
+}
+
+/* --- Global Elements & Utility --- */
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* --- Header and Navigation Styles --- */
+
+.top-banner {
+    background-color: var(--card-bg);
+    border-bottom: 1px solid var(--border-color);
+    padding: 10px 0;
+}
+
+.header-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+}
+
+.search-bar {
+    display: flex;
+    align-items: center;
+}
+
+.search-bar input {
+    padding: 8px 15px;
+    border: 1px solid var(--border-color);
+    border-right: none;
+    border-radius: 4px 0 0 4px;
+    width: 250px;
+}
+
+.search-bar button {
+    padding: 8px 15px;
+    border: 1px solid var(--border-color);
+    background-color: var(--primary-color);
+    color: white;
+    cursor: pointer;
+    border-radius: 0 4px 4px 0;
+}
+
+.right-header .nav-icon {
+    color: var(--text-color);
+    margin-left: 15px;
+    font-size: 1.2em;
+}
+
+.contact-num {
+    margin-left: 20px;
+    font-weight: bold;
+}
+
+.main-nav {
+    background-color: var(--card-bg);
+    border-top: 1px solid #eee;
+    padding: 10px 0;
+}
+
+.nav-links {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--text-color);
+    margin-right: 25px;
+    font-size: 0.95em;
+    font-weight: 500;
+}
+.hero-image {
+    width: 100%;
+    height: 300px; 
+    margin-bottom: 20px;
+    
+    /* Place your actual banner image path here */
+    background: #bbb url('images/pastri.png') center/cover no-repeat;
+    
+    /* 1. Size and Scaling */
+    background-size: cover; 
+    
+    /* 2. Position */
+    background-position: center; 
+    
+    /* 3. Placeholder color */
+    background-color: #f5f5f5; 
+}
+/* --- Main Content Layout (Flexbox) --- */
+.main-container {
+    max-width: 1200px;
+    margin: 20px auto;
+    display: flex; /* FLEXBOX for sidebar and main content */
+    padding: 0 20px;
+}
+
+/* --- Sidebar Filters --- */
+.sidebar-filters {
+    flex: 0 0 250px; /* Fixed width for sidebar */
+    padding: 20px;
+    background-color: var(--card-bg);
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    margin-right: 20px;
+    height: fit-content; /* Ensure sidebar height adapts to content */
+}
+
+.sidebar-filters h2 {
+    margin-bottom: 20px;
+    border-bottom: 2px solid var(--primary-color);
+    padding-bottom: 10px;
+}
+
+.filter-group {
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px dotted var(--border-color);
+}
+
+.filter-group h3 {
+    font-size: 1.1em;
+    margin-bottom: 10px;
+}
+
+.filter-group label {
+    display: block;
+    margin-bottom: 5px;
+    cursor: pointer;
+    font-size: 0.9em;
+}
+
+.submit-button {
+    width: 100%;
+    padding: 10px;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+/* --- Product Grid and Cards (CSS Grid) --- */
+.shop-products {
+    flex: 1; /* Takes up the rest of the space */
+}
+
+.shop-products h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 1.8em;
+}
+
+.product-grid {
+    display: grid; /* CSS GRID for the 3-column product layout */
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 20px;
+}
+
+.product-card {
+    background-color: var(--card-bg);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    transition: transform 0.2s;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+.product-image-container {
+    height: 200px; /* Fixed height for all images */
+    position: relative;
+    overflow: hidden;
+}
+
+/* Styling for the <img> tag inside the container */
+.product-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensures image fills container without distortion */
+    display: block;
+}
+
+.product-info {
+    padding: 10px 15px;
+}
+
+.product-name {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.product-price {
+    color: var(--primary-color);
+    font-size: 1.2em;
+}
+
+.product-actions {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 15px 15px;
+    
+}
+
+.buy-now-btn, .add-btn {
+    padding: 8px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 0.9em;
+}
+
+.buy-now-btn {
+    background-color: var(--primary-color);
+    color: white;
+    flex: 1;
+    margin-right: 5px;
+}
+
+.add-btn {
+    background-color: #f0f0f0; 
+    color: var(--text-color);
+    flex: 0 0 auto; 
+    width: 60px; /* Small fixed width for "Add" button */
+}
+
+.wishlist-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgba(255, 255, 255, 0.8);
+    border: none;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    color: var(--primary-color);
+    font-size: 1em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+}
+/* --- FOOTER MAIN SECTION --- */
+footer {
+    background-color: #FFFFFF; /* White background as seen in the prototype */
+    color: #555555; /* Default text color */
+    font-size: 14px;
+    border-top: 1px solid #EEEEEE; /* Separator from the main content */
+}
+
+.footer-content-main {
+    display: flex;
+    justify-content: space-between; /* Spreads the columns out */
+    max-width: 1200px; /* Aligns with the main content width */
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+/* --- Branding and Logo Style --- */
+.footer-brand .bakery-logo {
+    font-size: 28px;
+    font-weight: bold;
+    color: #964B00; /* Example for a warm, brown/tan color */
+    margin-bottom: 20px;
+}
+
+/* --- Column Heading Style --- */
+.footer-column h4, 
+.footer-contact h4 {
+    font-size: 16px;
+    font-weight: bold;
+    color: #333333; /* Darker color for headings */
+    margin-bottom: 15px;
+}
+
+/* --- Navigation Links (Columns 1, 2, 3) --- */
+.footer-column ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-column li {
+    margin-bottom: 8px;
+}
+
+.footer-column a {
+    text-decoration: none;
+    color: #555555;
+    transition: color 0.2s;
+}
+
+.footer-column a:hover {
+    color: #E75480; /* Pink/Red accent color for hover */
+}
+
+/* --- Contact Details Column (Column 4) --- */
+.footer-contact p {
+    margin-bottom: 5px;
+}
+
+/* --- Bottom Copyright Bar --- */
+.footer-copyright {
+    background-color: #333333; /* Dark background for the bottom bar */
+    color: #BBBBBB; /* Light text color */
+    text-align: center;
+    padding: 15px 20px;
+    font-size: 12px;
+    border-top: 1px solid #444444;
+}
+
+.footer-copyright a {
+    color: #BBBBBB;
+    text-decoration: none;
+    margin: 0 5px;
+}
+/* --- Responsiveness --- */
+@media (max-width: 1024px) {
+    .product-grid {
+        grid-template-columns: repeat(2, 1fr); 
+    }
+}
+
+@media (max-width: 768px) {
+    .main-container {
+        flex-direction: column; /* Stack sidebar and main content */
+    }
+
+    .sidebar-filters {
+        width: 100%;
+        margin-right: 0;
+        margin-bottom: 20px;
+    }
+
+    .product-grid {
+        grid-template-columns: 1fr; /* Single column on phones */
+    }
+    
+    .footer-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}  
+</style>
+<body>
+
+    <header class="top-banner">
+        <div class="header-content">
+            <div class="left-header">
+                <span class="free-delivery">Free Deliver Above 999</span>
+            </div>
+            <div class="center-header">
+                <div class="search-bar">
+                    <input type="text" placeholder="Search product">
+                    <button><i class="fas fa-search"></i></button>
+                </div>
+            </div>
+            <div class="right-header">
+                <a href="#" class="nav-icon"><i class="fas fa-user-circle"></i></a>
+                <a href="#" class="nav-icon"><i class="fas fa-shopping-bag"></i></a>
+                <a href="#" class="nav-icon"><i class="fas fa-heart"></i></a>
+                <span class="contact-num">Call: 123-456-789</span>
+            </div>
+        </div>
+        <nav class="main-nav">
+            <div class="nav-links">
+                <a href="#">Home</a>
+                <a href="#">Shop</a>
+                <a href="#">Categories</a>
+                <a href="#">Gallery</a>
+                <a href="#">Blog</a>
+                <a href="#">Contact us</a>
+            </div>
+        </nav>
+    </header>
+
+    <div class="hero-image">
+        </div>
+
+    <main class="main-container">
+        
+        <aside class="sidebar-filters">
+            <h2>Filter Options</h2>
+            <div class="filter-group"><h3>Category</h3><label><input type="checkbox"> Cakes</label><label><input type="checkbox"> Pastries</label><label><input type="checkbox"> Breads</label><label><input type="checkbox"> Cookies & Biscuits</label><label><input type="checkbox"> Seasonal Specials</label></div>
+            <div class="filter-group"><h3>Price</h3><p>$89 - $945</p><input type="range" min="89" max="945" value="500"></div>
+            <div class="filter-group"><h3>Maintenance</h3><label><input type="radio" name="maintenance"> Low</label><label><input type="radio" name="maintenance"> High</label><label><input type="radio" name="maintenance"> Medium</label></div>
+            <div class="filter-group"><h3>Availability</h3><label><input type="checkbox"> In Stock</label><label><input type="checkbox"> Out Of Stock</label></div>
+            <div class="filter-group"><h3>Ratings</h3><label><input type="radio" name="rating"> 5 star</label><label><input type="radio" name="rating"> 4 star & Above</label></div>
+            <button class="submit-button">Submit</button>
+        </aside>
+
+        <section class="shop-products">
+            <h2>Shop Categories</h2>
+            
+            <div class="product-grid">
+                
+                <div class="product-card">
+                    <div class="product-image-container">
+                        <img src="images/donut.png" alt="Assorted Donuts" class="product-img">
+                        <button class="wishlist-btn"><i class="far fa-heart"></i></button>
+                    </div>
+                    <div class="product-info">
+                        <p class="product-name">Pastries</p>
+                        <p class="product-price">$349</p>
+                    </div>
+                    <div class="product-actions">
+                        <button class="buy-now-btn">Buy now</button>
+                        <button class="add-btn">Add</button>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image-container">
+                        <img src="images/bread and biscuits.png" alt="Bread and biscuits" class="product-img">
+                        <button class="wishlist-btn"><i class="far fa-heart"></i></button>
+                    </div>
+                    <div class="product-info">
+                        <p class="product-name">Bread and biscuits</p>
+                        <p class="product-price">$747</p>
+                    </div>
+                    <div class="product-actions">
+                        <button class="buy-now-btn">Buy now</button>
+                        <button class="add-btn">Add</button>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-image-container">
+                        <img src="images/birthday cake.png" alt="Birthday Cakes Butter" class="product-img">
+                        <button class="wishlist-btn"><i class="far fa-heart"></i></button>
+                    </div>
+                    <div class="product-info">
+                        <p class="product-name">Birthday Cakes Butter</p>
+                        <p class="product-price">$658</p>
+                    </div>
+                    <div class="product-actions">
+                        <button class="buy-now-btn">Buy now</button>
+                        <button class="add-btn">Add</button>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-image-container">
+                        <img src="images/cupcakes.png" alt="Muffins & Cupcakes" class="product-img">
+                        <button class="wishlist-btn"><i class="far fa-heart"></i></button>
+                    </div>
+                    <div class="product-info">
+                        <p class="product-name">Muffins & Cupcakes</p>
+                        <p class="product-price">$556</p>
+                    </div>
+                    <div class="product-actions">
+                        <button class="buy-now-btn">Buy now</button>
+                        <button class="add-btn">Add</button>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-image-container">
+                        <img src="images/mini chocolate.png" alt="Pies & Tarts" class="product-img">
+                        <button class="wishlist-btn"><i class="far fa-heart"></i></button>
+                    </div>
+                    <div class="product-info">
+                        <p class="product-name">Pies & Tarts</p>
+                        <p class="product-price">$445</p>
+                    </div>
+                    <div class="product-actions">
+                        <button class="buy-now-btn">Buy now</button>
+                        <button class="add-btn">Add</button>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-image-container">
+                        <img src="images/savory item.png" alt="Savory Boxes" class="product-img">
+                        <button class="wishlist-btn"><i class="far fa-heart"></i></button>
+                    </div>
+                    <div class="product-info">
+                        <p class="product-name">Savory Boxes</p>
+                        <p class="product-price">$398</p>
+                    </div>
+                    <div class="product-actions">
+                        <button class="buy-now-btn">Buy now</button>
+                        <button class="add-btn">Add</button>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image-container">
+                        <img src="images/gift hamper.png" alt="Gift Boxes & Hampers" class="product-img">
+                        <button class="wishlist-btn"><i class="far fa-heart"></i></button>
+                    </div>
+                    <div class="product-info">
+                        <p class="product-name">Gift Boxes & Hampers</p>
+                        <p class="product-price">$776</p>
+                    </div>
+                    <div class="product-actions">
+                        <button class="buy-now-btn">Buy now</button>
+                        <button class="add-btn">Add</button>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-image-container">
+                        <img src="images/gold cake.png" alt="Birthday Cakes Gold" class="product-img">
+                        <button class="wishlist-btn"><i class="far fa-heart"></i></button>
+                    </div>
+                    <div class="product-info">
+                        <p class="product-name">Birthday Cakes Gold</p>
+                        <p class="product-price">$849</p>
+                    </div>
+                    <div class="product-actions">
+                        <button class="buy-now-btn">Buy now</button>
+                        <button class="add-btn">Add</button>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-image-container">
+                        <img src="images/vegan.png" alt="Vegan & Gluten-free" class="product-img">
+                        <button class="wishlist-btn"><i class="far fa-heart"></i></button>
+                    </div>
+                    <div class="product-info">
+                        <p class="product-name">Vegan & Gluten-free</p>
+                        <p class="product-price">$899</p>
+                    </div>
+                    <div class="product-actions">
+                        <button class="buy-now-btn">Buy now</button>
+                        <button class="add-btn">Add</button>
+                    </div>
+                </div>
+                 </div>
+        </section>
+    </main>
+  <footer>
+    <div class="footer-content-main">
+        
+        <div class="footer-brand">
+            <div class="bakery-logo">Bakery</div> 
+            </div>
+
+        <div class="footer-column">
+            <h4>Customer service</h4>
+            <ul>
+                <li><a href="#">My Account</a></li>
+                <li><a href="#">Checkout</a></li>
+                <li><a href="#">FAQ</a></li>
+                <li><a href="#">Return</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-column">
+            <h4>Company</h4>
+            <ul>
+                <li><a href="#">About us</a></li>
+                <li><a href="#">Blogs</a></li>
+                <li><a href="#">Contact us</a></li>
+                <li><a href="#">Career</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-column">
+            <h4>Our information</h4>
+            <ul>
+                <li><a href="#">Privacy</a></li>
+                <li><a href="#">Terms & Condition</a></li>
+                <li><a href="#">Customer Feed back</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-contact">
+            <h4>Contact Details</h4>
+            <p>Mobile: 123-456-789</p>
+            <p>Email: _Bakery@gmail.com</p>
+            <p>Address: 12, north city - 001</p>
+            <div class="social-icons">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="footer-copyright">
+        <p>&copy; 2026 Bakery Co. All rights reserved</p>
+        <p><a href="#">Home</a> | <a href="#">Cookies</a> | <a href="#">Privacy Policy</a></p>
+    </div>
+</footer>  
+   <script src="script.js"></script>
+</body>
+</html>

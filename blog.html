@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bakery - Blog</title>
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"> 
+     </head>
+     <style>
+      body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    background: #fff;
+}
+
+/* Top Bar */
+.top-bar {
+    background: #fcefe4;
+    padding: 8px;
+    display: flex;
+    justify-content: space-around;
+    font-size: 14px;
+}
+.top-bar .call { color: green; }
+
+/* Header */
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 40px;
+    background: #fff;
+    border-bottom: 1px solid #eee;
+}
+.logo {
+    font-size: 28px;
+    font-weight: bold;
+    color: #d69b6d;
+}
+.search-box {
+    display: flex;
+    width: 40%;
+}
+.search-box input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 20px 0 0 20px;
+}
+.search-box button {
+    padding: 8px 15px;
+    border: none;
+    background: #f2c99c;
+    border-radius: 0 20px 20px 0;
+}
+.icons span {
+    font-size: 22px;
+    margin-left: 10px;
+}
+
+/* Navbar */
+nav {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+}
+nav a {
+    text-decoration: none;
+    color: #444;
+    font-size: 16px;
+}
+nav a.active {
+    color: #d69b6d;
+    font-weight: bold;
+}
+
+/* Blog Section */
+.blog-section {
+    text-align: center;
+    padding: 40px 20px;
+}
+.blog-grid {
+    max-width: 1000px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+}
+.blog-card img {
+    width: 100%;
+    border-radius: 10px;
+}
+.blog-card h4 {
+    margin: 10px 0;
+}
+.blog-card p {
+    font-size: 14px;
+    color: #444;
+}
+.blog-card .date {
+    display: block;
+    margin: 5px 0;
+    color: #777;
+}
+.green-text {
+    color: green;
+}
+
+/* Footer */
+footer {
+    background: #fcefe4;
+    padding: 40px 20px;
+    margin-top: 50px;
+}
+.footer-container {
+    max-width: 1100px;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+}
+.footer-col ul {
+    list-style: none;
+    padding: 0;
+}
+.footer-col ul li {
+    margin-bottom: 6px;
+}
+.copy {
+    text-align: center;
+    margin-top: 20px;
+}
+.copy.small {
+    font-size: 13px;
+}
+
+     </style>
+<body>
+
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <span>Free Deliver Above 999</span>
+        <span>Get 25%Off for first order</span>
+        <span class="call">Call: 123-456-789</span>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <div class="logo">Bakery</div>
+        <div class="search-box">
+            <input type="text" placeholder="Search product">
+            <button>🔍</button>
+        </div>
+
+        <div class="icons">
+            <span>♡</span>
+            <span>🛒</span>
+            <span class="user-icon">👤</span>
+        </div>
+    </header>
+
+    <!-- Navbar -->
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="shop.html">Shop</a>
+        <a href="categories.html">Categories</a>
+        <a href="gallery.html">Gallery</a>
+        <a class="active" href="blog.html">Blog</a>
+        <a href="contact.html">Contact us</a>
+    </nav>
+
+    <!-- Blog Section -->
+    <section class="blog-section">
+        <h2>Freshly Baked Stories Our Blogs</h2>
+        <p class="subtitle">From Our Oven to Your Inbox</p>
+
+        <div class="blog-grid">
+
+            <!-- Blog 1 -->
+            <div class="blog-card">
+                <img src="images/candle cake.png">
+                <h4>Perfect sponge Cake</h4>
+                <span class="date">Aug 14,2025</span>
+                <p>Birthday cake</p>
+            </div>
+
+            <!-- Blog 2 -->
+            <div class="blog-card wide">
+                <img src="images/chef decorating cake.png">
+                <p class="desc">
+                    Discover the art, science, and love behind baking.
+                    From seasonal recipes to behind-the-scenes stories — 
+                    stay connected with the warmth of our bakery.
+                </p>
+            </div>
+
+            <!-- Blog 3 -->
+            <div class="blog-card">
+                <img src="images/lava cake.png">
+                <h4>Choco Elite Cake</h4>
+                <span class="date">Aug 14,2025</span>
+                <p>Child special</p>
+            </div>
+
+            <!-- Blog 4 -->
+            <div class="blog-card">
+                <img src="images/baking fun.png">
+                <h4>Baking with fun flour & memories</h4>
+                <span class="date">Aug 14,2025</span>
+                <p>Family & Baking</p>
+            </div>
+
+            <!-- Blog 5 -->
+            <div class="blog-card wide">
+                <img src="images/team chef.jpg">
+                <h4 class="green-text">Behind the scenes • A day in our Bakery</h4>
+                <span class="date">Aug 14,2025</span>
+                <p>Our story</p>
+            </div>
+
+            <!-- Blog 6 -->
+            <div class="blog-card">
+                <img src="images/plain.jpg">
+                <h4>Top 5 Flavours must try our bakery</h4>
+                <span class="date">Aug 14,2025</span>
+                <p>Seasonal Favourites</p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+
+            <div class="footer-col logo-col">
+                <div class="footer-logo">Bakery</div>
+                <ul>
+                    <li>My Account</li>
+                    <li>Checkup</li>
+                    <li>FAQ</li>
+                    <li>Return</li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Company</h4>
+                <ul>
+                    <li>About us</li>
+                    <li>Blogs</li>
+                    <li>Contact us</li>
+                    <li>Career</li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Our information</h4>
+                <ul>
+                    <li>Privacy</li>
+                    <li>Terms & Condition</li>
+                    <li>Customer Feedback</li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <ul>
+                    <li>Mobile: 123-456-789</li>
+                    <li>Email: Bakery@gmail.com</li>
+                    <li>Address: 12, North City-001</li>
+                </ul>
+            </div>
+
+        </div>
+
+        <p class="copy">© 2025 Bakery. All rights reserved.</p>
+        <p class="copy small">Terms & Conditions | Privacy Policy</p>
+    </footer>
+
+</body>
+</html>
